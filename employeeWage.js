@@ -1,5 +1,5 @@
 console.log("Employee Wage Computation Problem\n")
-//UC6 - Calculate daily wage with total wage and save daily wage in an array
+//UC8 - Store day and daily wage along with total wage using map
 
 const IS_PART_TIME = 1;
 const IS_FULL_TIME = 2;
@@ -12,6 +12,7 @@ const MAX_HRS_IN_MONTH = 100;
 let totalEmployeeHours = 0;
 let totalWorkingDays = 0;
 let employeeDailyWageArray = new Array();
+let employeeDailyWageMap = new Map();
 
 function getWorkingHours(employeeCheck){
     switch (employeeCheck) {
@@ -36,6 +37,7 @@ while(totalEmployeeHours <= MAX_HRS_IN_MONTH && totalWorkingDays < NUM_OF_WORKIN
     let employeeHours = getWorkingHours(employeeCheck);
     totalEmployeeHours += employeeHours;
     employeeDailyWageArray.push(calculateDailyWage(employeeHours));
+    employeeDailyWageMap.set(totalWorkingDays, calculateDailyWage(employeeHours));
 }
 
 let employeeWage = calculateDailyWage(totalEmployeeHours);
@@ -103,3 +105,8 @@ function totalDaysWorked(numOfDays,dailyWage){
     return numOfDays;
 }
 console.log("\nUC7G - Number of days the employee worked: " + employeeDailyWageArray.reduce(totalDaysWorked,0));
+
+//UC8: Store day and daily wage along with total wage
+console.log("\nUC8 - \nThe employee daily wage with map : ")
+console.log(employeeDailyWageMap);
+console.log("\nUC8 - Employee Wage Map : \nTotal Employee Wage : " + Array.from(employeeDailyWageMap.values()).reduce(totalWage, 0));
